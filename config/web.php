@@ -56,6 +56,16 @@ $config = [
                     'route' => '/api/addbuhaj',
                     'verb' => 'POST',
                 ],
+                [
+                    'pattern' => '/getclients',
+                    'route' => '/api/getclients',
+                    'verb' => 'GET',
+                ],
+                [
+                    'pattern' => '/addclient',
+                    'route' => '/api/addclient',
+                    'verb' => 'POST',
+                ],
             ],
         ],
     ],

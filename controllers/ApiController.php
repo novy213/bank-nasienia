@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Buhaj;
+use app\models\Clients;
 
 class ApiController extends \app\components\Controller
 {
@@ -83,6 +84,28 @@ class ApiController extends \app\components\Controller
         $buhaj->w_dniu = $post->w_dniu;
         if($buhaj->validate()){
             $buhaj->save();
+            return [
+                'error' => false,
+                'message' => null,
+            ];
+        }
+    }
+    public function actionGetclients(){
+        $clients = Clients::find()->all();
+        return [
+            'error' => false,
+            'message' => null,
+            'clients' => $clients
+        ];
+    }
+    public function actionAddclient(){
+        $post = $this->getJsonInput();
+        $client = new Clients();
+        $client->imie = $post->imie;
+        $client->nazwisko = $post->nazwisko;
+        $client->adres = $post->adres;
+        if($client->validate()){
+            $client->save();
             return [
                 'error' => false,
                 'message' => null,
