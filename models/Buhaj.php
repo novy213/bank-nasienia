@@ -36,10 +36,11 @@ use Yii;
  * @property string|null $weterynaryjny12
  * @property string|null $indywidualny_numer_samca_dawcy13
  * @property string|null $odniesienie_swiadectwa_zootechnicznego14
- * @property string|null $kolor_opakowan21
- * @property string|null $liczba_opakowan22
- * @property string|null $miejsce_pobrania_nasienia23
- * @property string|null $data_pobrania_nasienia24
+ * @property string|null $kolor_opakowan
+ * @property string|null $kod_opakowan
+ * @property string|null $liczba_opakowan
+ * @property string|null $miejsce_pobrania_nasienia
+ * @property string|null $data_pobrania_nasienia
  * @property string|null $nazwa31
  * @property string|null $adres32
  * @property string|null $numer_zatwierdzenia33
@@ -47,6 +48,7 @@ use Yii;
  * @property string|null $sporzadzono_w61
  * @property string|null $w_dniu62
  * @property string|null $imie_nazwisko_osoby_podpisujacej63
+ * @property string|null $inne_istotne_informacje
  */
 class Buhaj extends \yii\db\ActiveRecord
 {
@@ -64,7 +66,7 @@ class Buhaj extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['numer_swiadectwa', 'nazwa_zwiazku_hodowcow1', 'nazwa_ksiegi_hodowlanej2', 'nazwa_rasy_samca_dawcy3', 'numer_samca_dawcy_w_kh5', 'identyfikacyjny_numer_dla_samca_dawcy6', 'system71', 'metoda81', 'indywidualny_numer_indentyfikacjyny72', 'weterynaryjny_numer_indentyfikacjyny73', 'wynik82', 'imie74', 'data_kraj_urodzenia_samca_dawcy9', 'imie_nazwisko_itd_hodowcy10', 'imie_nazwisko_itd_wlasciciela11', 'ojciec121', 'dziadek_ze_strony_ojca1211', 'babka_ze_strony_ojca1212', 'matka122', 'dziadek_ze_strony_matki1221', 'babka_ze_strony_matki1222', 'wyniki_wartosci_uzytkowej131', 'aktualne_wyniki_oceny_genetycznej132', 'wady_genetyczne133', 'indywidualny_numer_identyfikacyjny11', 'weterynaryjny12', 'indywidualny_numer_samca_dawcy13', 'odniesienie_swiadectwa_zootechnicznego14', 'kolor_opakowan21', 'liczba_opakowan22', 'miejsce_pobrania_nasienia23', 'data_pobrania_nasienia24', 'nazwa31', 'adres32', 'numer_zatwierdzenia33', 'miejsce_przezaczenia4', 'sporzadzono_w61', 'w_dniu62', 'imie_nazwisko_osoby_podpisujacej63'], 'string'],
+            [['numer_swiadectwa', 'nazwa_zwiazku_hodowcow1', 'nazwa_ksiegi_hodowlanej2', 'nazwa_rasy_samca_dawcy3', 'numer_samca_dawcy_w_kh5', 'identyfikacyjny_numer_dla_samca_dawcy6', 'system71', 'metoda81', 'indywidualny_numer_indentyfikacjyny72', 'weterynaryjny_numer_indentyfikacjyny73', 'wynik82', 'imie74', 'data_kraj_urodzenia_samca_dawcy9', 'imie_nazwisko_itd_hodowcy10', 'imie_nazwisko_itd_wlasciciela11', 'ojciec121', 'dziadek_ze_strony_ojca1211', 'babka_ze_strony_ojca1212', 'matka122', 'dziadek_ze_strony_matki1221', 'babka_ze_strony_matki1222', 'wyniki_wartosci_uzytkowej131', 'aktualne_wyniki_oceny_genetycznej132', 'wady_genetyczne133', 'indywidualny_numer_identyfikacyjny11', 'weterynaryjny12', 'indywidualny_numer_samca_dawcy13', 'odniesienie_swiadectwa_zootechnicznego14', 'kolor_opakowan', 'kod_opakowan', 'liczba_opakowan', 'miejsce_pobrania_nasienia', 'data_pobrania_nasienia', 'nazwa31', 'adres32', 'numer_zatwierdzenia33', 'miejsce_przezaczenia4', 'sporzadzono_w61', 'w_dniu62', 'imie_nazwisko_osoby_podpisujacej63', 'inne_istotne_informacje'], 'string'],
         ];
     }
 
@@ -103,10 +105,11 @@ class Buhaj extends \yii\db\ActiveRecord
             'weterynaryjny12' => 'Weterynaryjny12',
             'indywidualny_numer_samca_dawcy13' => 'Indywidualny Numer Samca Dawcy13',
             'odniesienie_swiadectwa_zootechnicznego14' => 'Odniesienie Swiadectwa Zootechnicznego14',
-            'kolor_opakowan21' => 'Kolor Opakowan21',
-            'liczba_opakowan22' => 'Liczba Opakowan22',
-            'miejsce_pobrania_nasienia23' => 'Miejsce Pobrania Nasienia23',
-            'data_pobrania_nasienia24' => 'Data Pobrania Nasienia24',
+            'kolor_opakowan' => 'Kolor Opakowan',
+            'kod_opakowan' => 'Kod Opakowan',
+            'liczba_opakowan' => 'Liczba Opakowan',
+            'miejsce_pobrania_nasienia' => 'Miejsce Pobrania Nasienia',
+            'data_pobrania_nasienia' => 'Data Pobrania Nasienia',
             'nazwa31' => 'Nazwa31',
             'adres32' => 'Adres32',
             'numer_zatwierdzenia33' => 'Numer Zatwierdzenia33',
@@ -114,6 +117,7 @@ class Buhaj extends \yii\db\ActiveRecord
             'sporzadzono_w61' => 'Sporzadzono W61',
             'w_dniu62' => 'W Dniu62',
             'imie_nazwisko_osoby_podpisujacej63' => 'Imie Nazwisko Osoby Podpisujacej63',
+            'inne_istotne_informacje' => 'Inne Istotne Informacje',
         ];
     }
 }

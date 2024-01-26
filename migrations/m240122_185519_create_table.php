@@ -58,10 +58,11 @@ class m240122_185519_create_table extends Migration
             'weterynaryjny12' => $this->text()->defaultValue("N\D"),
             'indywidualny_numer_samca_dawcy13' => $this->text()->defaultValue("N\D"),
             'odniesienie_swiadectwa_zootechnicznego14' => $this->text()->defaultValue("N\D"),
-            'kolor_opakowan21' => $this->text(),
-            'liczba_opakowan22' => $this->text(),
-            'miejsce_pobrania_nasienia23' => $this->text(),
-            'data_pobrania_nasienia24' => $this->text(),
+            'kolor_opakowan' => $this->text(),
+            'kod_opakowan' => $this->text(),
+            'liczba_opakowan' => $this->text(),
+            'miejsce_pobrania_nasienia' => $this->text(),
+            'data_pobrania_nasienia' => $this->text(),
             'nazwa31' => $this->text()->defaultValue("Testowa nazwa banku"),
             'adres32' => $this->text()->defaultValue("Testowy adres banku"),
             'numer_zatwierdzenia33' => $this->text()->defaultValue("1412301"),
@@ -69,12 +70,14 @@ class m240122_185519_create_table extends Migration
             'sporzadzono_w61' => $this->text()->defaultValue("Pruszkow"),
             'w_dniu62' => $this->text(),
             'imie_nazwisko_osoby_podpisujacej63' => $this->text()->defaultValue("Testowa osoba"),
+            'inne_istotne_informacje' => $this->text(),
         ]);
         $this -> alterColumn('buhaj','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('api_app', [
             'app_token' => $this->text(),
             'app_name' => $this->text(),
         ]);
+        $this->insert('api_app', ['app_token'=> 'cASFK3PrjJs0fCZPAEiCVnIVaHaWBCg0', 'app_name'=>'test']);
     }
 
     /**

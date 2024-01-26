@@ -76,12 +76,13 @@ class ApiController extends Controller
         $buhaj->aktualne_wyniki_oceny_genetycznej132 = $post->aktualne_wyniki_oceny_genetycznej132;
         $buhaj->wady_genetyczne133 = $post->wady_genetyczne133;
         $buhaj->indywidualny_numer_identyfikacyjny11 = $post->indywidualny_numer_identyfikacyjny11;
-        $buhaj->kolor_opakowan21 = $post->kolor_opakowan21;
-        $buhaj->liczba_opakowan22 = $post->liczba_opakowan22;
-        $buhaj->miejsce_pobrania_nasienia23 = $post->miejsce_pobrania_nasienia23;
-        $buhaj->data_pobrania_nasienia24 = $post->data_pobrania_nasienia24;
+        $buhaj->kolor_opakowan = $post->kolor_opakowan;
+        $buhaj->kod_opakowan = $post->kod_opakowan;
+        $buhaj->liczba_opakowan = $post->liczba_opakowan;
+        $buhaj->miejsce_pobrania_nasienia = $post->miejsce_pobrania_nasienia;
+        $buhaj->data_pobrania_nasienia = $post->data_pobrania_nasienia;
         $buhaj->miejsce_przezaczenia4 = $post->miejsce_przezaczenia4;
-        $buhaj->w_dniu62 = $post->w_dniu62;
+        $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
         if($buhaj->validate()){
             $buhaj->save();
             return [
