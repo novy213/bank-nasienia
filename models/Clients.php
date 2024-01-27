@@ -20,6 +20,8 @@ use Yii;
  * @property string|null $adres_nr_domu
  * @property string|null $adres_nr_lokalu
  * @property string|null $telefon
+ * @property string|null $nip
+ * @property string|null $regon
  */
 class Clients extends \yii\db\ActiveRecord
 {
@@ -37,7 +39,7 @@ class Clients extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['imie', 'nazwisko', 'adres_kraj', 'adres_woj', 'adres_powiat', 'adres_gmina', 'adres_kod_pocz', 'adres_poczta', 'adres_ulica', 'adres_nr_domu', 'adres_nr_lokalu', 'telefon'], 'string', 'max' => 255],
+            [['imie', 'nazwisko', 'adres_kraj', 'adres_woj', 'adres_powiat', 'adres_gmina', 'adres_kod_pocz', 'adres_poczta', 'adres_ulica', 'adres_nr_domu', 'adres_nr_lokalu', 'telefon', 'nip', 'regon'], 'string', 'max' => 255],
         ];
     }
 
@@ -60,6 +62,8 @@ class Clients extends \yii\db\ActiveRecord
             'adres_nr_domu' => 'Adres Nr Domu',
             'adres_nr_lokalu' => 'Adres Nr Lokalu',
             'telefon' => 'Telefon',
+            'nip' => 'Nip',
+            'regon' => 'Regon',
         ];
     }
 }

@@ -26,6 +26,8 @@ class m240122_185519_create_table extends Migration
             'adres_nr_domu' => $this->string(),
             'adres_nr_lokalu' => $this->string(),
             'telefon' => $this->string(),
+            'nip' => $this->string(),
+            'regon' => $this->string(),
         ]);
         $this -> alterColumn('clients','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('buhaj', [

@@ -114,6 +114,8 @@ class ApiController extends Controller
         $client->adres_nr_domu = $post->adres_nr_domu;
         $client->adres_nr_lokalu = $post->adres_nr_lokalu;
         $client->telefon = $post->telefon;
+        $client->nip = $post->nip;
+        $client->regon = $post->regon;
         if($client->validate()){
             $client->save();
             return [
