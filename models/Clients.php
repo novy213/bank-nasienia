@@ -10,18 +10,16 @@ use Yii;
  * @property int $id
  * @property string|null $imie
  * @property string|null $nazwisko
- * @property string|null $adres_kraj
- * @property string|null $adres_woj
- * @property string|null $adres_powiat
- * @property string|null $adres_gmina
- * @property string|null $adres_kod_pocz
- * @property string|null $adres_poczta
- * @property string|null $adres_ulica
- * @property string|null $adres_nr_domu
- * @property string|null $adres_nr_lokalu
+ * @property string|null $nazwa_skrocona
+ * @property string|null $miejscowosc
+ * @property string|null $kod_pocztowy
+ * @property string|null $poczta
+ * @property string|null $ulica
+ * @property string|null $nr_domu
+ * @property string|null $nr_lokalu
  * @property string|null $telefon
  * @property string|null $nip
- * @property string|null $regon
+ * @property string|null $email
  */
 class Clients extends \yii\db\ActiveRecord
 {
@@ -39,7 +37,7 @@ class Clients extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['imie', 'nazwisko', 'adres_kraj', 'adres_woj', 'adres_powiat', 'adres_gmina', 'adres_kod_pocz', 'adres_poczta', 'adres_ulica', 'adres_nr_domu', 'adres_nr_lokalu', 'telefon', 'nip', 'regon'], 'string', 'max' => 255],
+            [['imie', 'nazwisko', 'nazwa_skrocona', 'miejscowosc', 'kod_pocztowy', 'poczta', 'ulica', 'nr_domu', 'nr_lokalu', 'telefon', 'nip', 'email'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,18 +50,16 @@ class Clients extends \yii\db\ActiveRecord
             'id' => 'ID',
             'imie' => 'Imie',
             'nazwisko' => 'Nazwisko',
-            'adres_kraj' => 'Adres Kraj',
-            'adres_woj' => 'Adres Woj',
-            'adres_powiat' => 'Adres Powiat',
-            'adres_gmina' => 'Adres Gmina',
-            'adres_kod_pocz' => 'Adres Kod Pocz',
-            'adres_poczta' => 'Adres Poczta',
-            'adres_ulica' => 'Adres Ulica',
-            'adres_nr_domu' => 'Adres Nr Domu',
-            'adres_nr_lokalu' => 'Adres Nr Lokalu',
+            'nazwa_skrocona' => 'Nazwa Skrocona',
+            'miejscowosc' => 'Miejscowosc',
+            'kod_pocztowy' => 'Kod Pocztowy',
+            'poczta' => 'Poczta',
+            'ulica' => 'Ulica',
+            'nr_domu' => 'Nr Domu',
+            'nr_lokalu' => 'Nr Lokalu',
             'telefon' => 'Telefon',
             'nip' => 'Nip',
-            'regon' => 'Regon',
+            'email' => 'Email',
         ];
     }
 }

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 use yii\db\Migration;
 
@@ -16,23 +16,21 @@ class m240122_185519_create_table extends Migration
             'id' => $this->primaryKey()->notNull()->unique(),
             'imie' => $this->string(),
             'nazwisko' => $this->string(),
-            'adres_kraj' => $this->string(),
-            'adres_woj' => $this->string(),
-            'adres_powiat' => $this->string(),
-            'adres_gmina' => $this->string(),
-            'adres_kod_pocz' => $this->string(),
-            'adres_poczta' => $this->string(),
-            'adres_ulica' => $this->string(),
-            'adres_nr_domu' => $this->string(),
-            'adres_nr_lokalu' => $this->string(),
+            'nazwa_skrocona' => $this->string(),
+            'miejscowosc' => $this->string(),
+            'kod_pocztowy' => $this->string(),
+            'poczta' => $this->string(),
+            'ulica' => $this->string(),
+            'nr_domu' => $this->string(),
+            'nr_lokalu' => $this->string(),
             'telefon' => $this->string(),
             'nip' => $this->string(),
-            'regon' => $this->string(),
+            'email' => $this->string(),
         ]);
         $this -> alterColumn('clients','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('buhaj', [
             'id' => $this->primaryKey()->notNull()->unique(),
-            'numer_swiadectwa' => $this->text(),
+            'numer_swiadectwa' => $this->integer(),
             'nazwa_zwiazku_hodowcow1' => $this->text()->defaultValue("Testowy zwiazek hodowcow"),
             'nazwa_ksiegi_hodowlanej2' => $this->text(),
             'nazwa_rasy_samca_dawcy3' => $this->text(),
@@ -74,12 +72,19 @@ class m240122_185519_create_table extends Migration
             'imie_nazwisko_osoby_podpisujacej63' => $this->text()->defaultValue("Testowa osoba"),
             'inne_istotne_informacje' => $this->text(),
         ]);
+        $this -> alterColumn('buhaj','numer_swiadectwa', $this->integer().' AUTO_INCREMENT');
         $this -> alterColumn('buhaj','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('api_app', [
             'app_token' => $this->text(),
             'app_name' => $this->text(),
         ]);
         $this->insert('api_app', ['app_token'=> 'cASFK3PrjJs0fCZPAEiCVnIVaHaWBCg0', 'app_name'=>'test']);
+        /*$this->createTable('historia_transakcji', [
+            'data_przyjecia' => $this->text(),
+            'data_wydania' => $this->text(),
+            'magazyn' => $this->text(),
+            'magazyn' => $this->text(),
+        ]);*/
     }
 
     /**

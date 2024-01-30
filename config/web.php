@@ -66,6 +66,16 @@ $config = [
                     'route' => '/api/addclient',
                     'verb' => 'POST',
                 ],
+                [
+                    'pattern' => '/deletebuhaj',
+                    'route' => '/api/deletebuhaj',
+                    'verb' => 'DELETE',
+                ],
+                [
+                    'pattern' => '/deleteclient',
+                    'route' => '/api/deleteclient',
+                    'verb' => 'DELETE',
+                ],
             ],
         ],
     ],

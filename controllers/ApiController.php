@@ -56,7 +56,6 @@ class ApiController extends Controller
     public function actionAddbuhaj(){
         $post = $this->getJsonInput();
         $buhaj = new Buhaj();
-        $buhaj->numer_swiadectwa = $post->numer_swiadectwa;
         $buhaj->nazwa_ksiegi_hodowlanej2 = $post->nazwa_ksiegi_hodowlanej2;
         $buhaj->nazwa_rasy_samca_dawcy3 = $post->nazwa_rasy_samca_dawcy3;
         $buhaj->numer_samca_dawcy_w_kh5 = $post->numer_samca_dawcy_w_kh5;
@@ -104,18 +103,16 @@ class ApiController extends Controller
         $client = new Clients();
         $client->imie = $post->imie;
         $client->nazwisko = $post->nazwisko;
-        $client->adres_kraj = $post->adres_kraj;
-        $client->adres_woj = $post->adres_woj;
-        $client->adres_powiat = $post->adres_powiat;
-        $client->adres_gmina = $post->adres_gmina;
-        $client->adres_kod_pocz = $post->adres_kod_pocz;
-        $client->adres_poczta = $post->adres_poczta;
-        $client->adres_ulica = $post->adres_ulica;
-        $client->adres_nr_domu = $post->adres_nr_domu;
-        $client->adres_nr_lokalu = $post->adres_nr_lokalu;
+        $client->nazwa_skrocona = $post->nazwa_skrocona;
+        $client->miejscowosc = $post->miejscowosc;
+        $client->kod_pocztowy = $post->kod_pocztowy;
+        $client->poczta = $post->poczta;
+        $client->ulica = $post->ulica;
+        $client->nr_domu = $post->nr_domu;
+        $client->nr_lokalu = $post->nr_lokalu;
+        $client->email = $post->email;
         $client->telefon = $post->telefon;
         $client->nip = $post->nip;
-        $client->regon = $post->regon;
         if($client->validate()){
             $client->save();
             return [
@@ -123,5 +120,21 @@ class ApiController extends Controller
                 'message' => null,
             ];
         }
+    }
+    public function actionbDeletebuhaj($id){
+        $buhaj = Buhaj::find()->andWhere(['id'=>$id])->one();
+        $buhaj->delete();
+        return [
+            'error' => false,
+            'message' => null,
+        ];
+    }
+    public function actionDeleteclient($id){
+        $client = Clients::find()->andWhere(['id'=>$id])->one();
+        $client->delete();
+        return [
+            'error' => false,
+            'message' => null,
+        ];
     }
 }
