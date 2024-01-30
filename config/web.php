@@ -67,12 +67,12 @@ $config = [
                     'verb' => 'POST',
                 ],
                 [
-                    'pattern' => '/deletebuhaj',
+                    'pattern' => '/deletebuhaj/<id:\d+>',
                     'route' => '/api/deletebuhaj',
                     'verb' => 'DELETE',
                 ],
                 [
-                    'pattern' => '/deleteclient',
+                    'pattern' => '/deleteclient/<id:\d+>',
                     'route' => '/api/deleteclient',
                     'verb' => 'DELETE',
                 ],
