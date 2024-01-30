@@ -121,7 +121,7 @@ class ApiController extends Controller
             ];
         }
     }
-    public function actionbDeletebuhaj($id){
+    public function actionDeletebuhaj($id){
         $buhaj = Buhaj::find()->andWhere(['id'=>$id])->one();
         $buhaj->delete();
         return [
