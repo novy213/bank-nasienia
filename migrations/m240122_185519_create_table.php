@@ -72,7 +72,6 @@ class m240122_185519_create_table extends Migration
             'imie_nazwisko_osoby_podpisujacej63' => $this->text()->defaultValue("Testowa osoba"),
             'inne_istotne_informacje' => $this->text(),
         ]);
-        $this -> alterColumn('buhaj','numer_swiadectwa', $this->integer().' AUTO_INCREMENT');
         $this -> alterColumn('buhaj','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('api_app', [
             'app_token' => $this->text(),
