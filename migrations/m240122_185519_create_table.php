@@ -78,12 +78,29 @@ class m240122_185519_create_table extends Migration
             'app_name' => $this->text(),
         ]);
         $this->insert('api_app', ['app_token'=> 'cASFK3PrjJs0fCZPAEiCVnIVaHaWBCg0', 'app_name'=>'test']);
-        /*$this->createTable('historia_transakcji', [
-            'data_przyjecia' => $this->text(),
-            'data_wydania' => $this->text(),
-            'magazyn' => $this->text(),
-            'magazyn' => $this->text(),
-        ]);*/
+        $this->createTable('historia_transakcji_przyjecia', [
+            'id' => $this->primaryKey()->notNull()->unique(),
+            'data' => $this->text(),
+            'buhaj_id' => $this->text(),
+        ]);
+        $this -> alterColumn('historia_transakcji_przyjecia','id', $this->integer().' AUTO_INCREMENT');
+        $this->createTable('historia_transakcji_wydania', [
+            'id' => $this->primaryKey()->notNull()->unique(),
+            'klient_id' => $this->integer(),
+            'data' => $this->text(),
+            'ilosc' => $this->integer(),
+        ]);
+        $this -> alterColumn('historia_transakcji_wydania','id', $this->integer().' AUTO_INCREMENT');
+        $this->createTable('buhaje_wydania', [
+            'buhaj_id' => $this->integer(),
+            'wydanie_id' => $this->integer(),
+        ]);
+        $this->createTable('magazyn', [
+            'nr_faktury' => $this->integer(),
+            'data' => $this->text(),
+            'buhaj_id' => $this->text(),
+            'ilosc' => $this->text(),
+        ]);
     }
 
     /**
@@ -93,6 +110,9 @@ class m240122_185519_create_table extends Migration
     {
         $this->dropTable('clients');
         $this->dropTable('buhaj');
+        $this->dropTable('historia_transakcji_wydania');
+        $this->dropTable('historia_transakcji_przyjecia');
         $this->dropTable('api_app');
+        $this->dropTable('buhaje_wydania');
     }
 }

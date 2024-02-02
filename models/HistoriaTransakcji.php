@@ -5,10 +5,10 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "buhaj".
+ * This is the model class for table "historia_transakcji".
  *
  * @property int $id
- * @property string|null $numer_swiadectwa
+ * @property int|null $numer_swiadectwa
  * @property string|null $nazwa_zwiazku_hodowcow1
  * @property string|null $nazwa_ksiegi_hodowlanej2
  * @property string|null $nazwa_rasy_samca_dawcy3
@@ -49,15 +49,18 @@ use Yii;
  * @property string|null $w_dniu62
  * @property string|null $imie_nazwisko_osoby_podpisujacej63
  * @property string|null $inne_istotne_informacje
+ * @property string|null $data_przyjecia
+ * @property string|null $data_wydania
+ * @property string|null $magazyn
  */
-class Buhaj extends \yii\db\ActiveRecord
+class HistoriaTransakcji extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'buhaj';
+        return 'historia_transakcji';
     }
 
     /**
@@ -66,7 +69,8 @@ class Buhaj extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['numer_swiadectwa', 'nazwa_zwiazku_hodowcow1', 'nazwa_ksiegi_hodowlanej2', 'nazwa_rasy_samca_dawcy3', 'numer_samca_dawcy_w_kh5', 'identyfikacyjny_numer_dla_samca_dawcy6', 'system71', 'metoda81', 'indywidualny_numer_indentyfikacjyny72', 'weterynaryjny_numer_indentyfikacjyny73', 'wynik82', 'imie74', 'data_kraj_urodzenia_samca_dawcy9', 'imie_nazwisko_itd_hodowcy10', 'imie_nazwisko_itd_wlasciciela11', 'ojciec121', 'dziadek_ze_strony_ojca1211', 'babka_ze_strony_ojca1212', 'matka122', 'dziadek_ze_strony_matki1221', 'babka_ze_strony_matki1222', 'wyniki_wartosci_uzytkowej131', 'aktualne_wyniki_oceny_genetycznej132', 'wady_genetyczne133', 'indywidualny_numer_identyfikacyjny11', 'weterynaryjny12', 'indywidualny_numer_samca_dawcy13', 'odniesienie_swiadectwa_zootechnicznego14', 'kolor_opakowan', 'kod_opakowan', 'liczba_opakowan', 'miejsce_pobrania_nasienia', 'data_pobrania_nasienia', 'nazwa31', 'adres32', 'numer_zatwierdzenia33', 'miejsce_przezaczenia4', 'sporzadzono_w61', 'w_dniu62', 'imie_nazwisko_osoby_podpisujacej63', 'inne_istotne_informacje'], 'string'],
+            [['numer_swiadectwa'], 'integer'],
+            [['nazwa_zwiazku_hodowcow1', 'nazwa_ksiegi_hodowlanej2', 'nazwa_rasy_samca_dawcy3', 'numer_samca_dawcy_w_kh5', 'identyfikacyjny_numer_dla_samca_dawcy6', 'system71', 'metoda81', 'indywidualny_numer_indentyfikacjyny72', 'weterynaryjny_numer_indentyfikacjyny73', 'wynik82', 'imie74', 'data_kraj_urodzenia_samca_dawcy9', 'imie_nazwisko_itd_hodowcy10', 'imie_nazwisko_itd_wlasciciela11', 'ojciec121', 'dziadek_ze_strony_ojca1211', 'babka_ze_strony_ojca1212', 'matka122', 'dziadek_ze_strony_matki1221', 'babka_ze_strony_matki1222', 'wyniki_wartosci_uzytkowej131', 'aktualne_wyniki_oceny_genetycznej132', 'wady_genetyczne133', 'indywidualny_numer_identyfikacyjny11', 'weterynaryjny12', 'indywidualny_numer_samca_dawcy13', 'odniesienie_swiadectwa_zootechnicznego14', 'kolor_opakowan', 'kod_opakowan', 'liczba_opakowan', 'miejsce_pobrania_nasienia', 'data_pobrania_nasienia', 'nazwa31', 'adres32', 'numer_zatwierdzenia33', 'miejsce_przezaczenia4', 'sporzadzono_w61', 'w_dniu62', 'imie_nazwisko_osoby_podpisujacej63', 'inne_istotne_informacje', 'data_przyjecia', 'data_wydania', 'magazyn'], 'string'],
         ];
     }
 
@@ -118,6 +122,9 @@ class Buhaj extends \yii\db\ActiveRecord
             'w_dniu62' => 'W Dniu62',
             'imie_nazwisko_osoby_podpisujacej63' => 'Imie Nazwisko Osoby Podpisujacej63',
             'inne_istotne_informacje' => 'Inne Istotne Informacje',
+            'data_przyjecia' => 'Data Przyjecia',
+            'data_wydania' => 'Data Wydania',
+            'magazyn' => 'Magazyn',
         ];
     }
 }

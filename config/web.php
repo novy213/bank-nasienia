@@ -76,6 +76,31 @@ $config = [
                     'route' => '/api/deleteclient',
                     'verb' => 'DELETE',
                 ],
+                [
+                    'pattern' => '/getprzyjecia',
+                    'route' => '/api/getprzyjecia',
+                    'verb' => 'GET',
+                ],
+                [
+                    'pattern' => '/getwydania',
+                    'route' => '/api/getwydania',
+                    'verb' => 'GET',
+                ],
+                [
+                    'pattern' => '/addwydanie',
+                    'route' => '/api/addwydanie',
+                    'verb' => 'POST',
+                ],
+                [
+                    'pattern' => '/editbuhaj/<id:\d+>',
+                    'route' => '/api/editbuhaj',
+                    'verb' => 'POST',
+                ],
+                [
+                    'pattern' => '/editclient/<id:\d+>',
+                    'route' => '/api/editclient',
+                    'verb' => 'POST',
+                ],
             ],
         ],
     ],
@@ -96,7 +121,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1', '172.26.0.1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '172.22.0.1'],
     ];
 }
 

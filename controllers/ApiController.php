@@ -4,7 +4,11 @@ namespace app\controllers;
 
 use app\components\Controller;
 use app\models\Buhaj;
+use app\models\BuhajeWydania;
 use app\models\Clients;
+use app\models\HistoriaTransakcji;
+use app\models\HistoriaTransakcjiPrzyjecia;
+use app\models\HistoriaTransakcjiWydania;
 
 class ApiController extends Controller
 {
@@ -84,9 +88,28 @@ class ApiController extends Controller
         $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
         if($buhaj->validate()){
             $buhaj->save();
+            $historia = new HistoriaTransakcjiPrzyjecia();
+            $historia->buhaj_id = $buhaj->id;
+            $date = new \DateTime();
+            $historia->data = $date->format("Y:m:d");
+            if($historia->validate()){
+                $historia->save();
+                return [
+                    'error' => false,
+                    'message' => null,
+                ];
+            }
+            else {
+                return [
+                    'error'=>true,
+                    'message'=>$historia->getErrorSummary(false)
+                ];
+            }
+        }
+        else {
             return [
-                'error' => false,
-                'message' => null,
+                'error'=>true,
+                'message'=>$buhaj->getErrorSummary(false)
             ];
         }
     }
@@ -121,6 +144,33 @@ class ApiController extends Controller
             ];
         }
     }
+    public function actionAddwydanie(){
+        $post = $this->getJsonInput();
+        $wydania = new HistoriaTransakcjiWydania();
+        $wydania->klient_id = $post->klient_id;
+        $wydania->ilosc = count($post->buhaj_id);
+        $data = new \DateTime();
+        $wydania->data = $data->format("Y:m:d");
+        if($wydania->validate()){
+            $wydania->save();
+            for($i=0;$i<count($post->buhaj_id);$i++){
+                $bh = new BuhajeWydania();
+                $bh->buhaj_id = $post->buhaj_id[$i];
+                $bh->wydanie_id = $wydania->id;
+                $bh->save();
+            }
+            return [
+                'error' => false,
+                'message' => null,
+            ];
+        }
+        else {
+            return[
+                'error' => true,
+                'message' => $wydania->getErrorSummary(false)
+            ];
+        }
+    }
     public function actionDeletebuhaj($id){
         $buhaj = Buhaj::find()->andWhere(['id'=>$id])->one();
         $buhaj->delete();
@@ -135,6 +185,97 @@ class ApiController extends Controller
         return [
             'error' => false,
             'message' => null,
+        ];
+    }
+    public function actionGetprzyjecia(){
+        $historia = HistoriaTransakcjiPrzyjecia::find()->all();
+        $ret = array();
+        for($i=0;$i<count($historia);$i++){
+            $buhaj = Buhaj::find()->andWhere(['id'=>$historia[$i]->id])->one();
+            $ret[] = [
+                'id' => $historia[$i]->id,
+                'data' => $historia[$i]->data,
+                'buhaj' => $buhaj,
+            ];
+        }
+        return [
+            'error' => false,
+            'message'=> null,
+            'historia' => $ret
+        ];
+    }
+    public function actionGetwydania(){
+        $historia = HistoriaTransakcjiWydania::find()->all();
+        $ret = array();
+        for($i=0;$i<count($historia);$i++){
+            $client = Clients::find()->andWhere(['id'=>$historia[$i]->klient_id])->one();
+            $ret[] = [
+                'id'=>$historia[$i]->id,
+                'klient'=>$client,
+                'data'=>$historia[$i]->data,
+                'ilosc'=>$historia[$i]->ilosc,
+            ];
+        }
+        return [
+            'error' => false,
+            'message'=> null,
+            'historia' => $ret
+        ];
+    }
+    public function actionEditbuhaj($id){
+        $post = $this->getJsonInput();
+        $buhaj = Buhaj::find()->andWhere(['id'=>$id])->one();
+        $buhaj->nazwa_ksiegi_hodowlanej2 = $post->nazwa_ksiegi_hodowlanej2;
+        $buhaj->nazwa_rasy_samca_dawcy3 = $post->nazwa_rasy_samca_dawcy3;
+        $buhaj->numer_samca_dawcy_w_kh5 = $post->numer_samca_dawcy_w_kh5;
+        $buhaj->indywidualny_numer_indentyfikacjyny72 = $post->indywidualny_numer_indentyfikacjyny72;
+        $buhaj->wynik82 = $post->wynik82;
+        $buhaj->imie74 = $post->imie74;
+        $buhaj->data_kraj_urodzenia_samca_dawcy9 = $post->data_kraj_urodzenia_samca_dawcy9;
+        $buhaj->imie_nazwisko_itd_hodowcy10 = $post->imie_nazwisko_itd_hodowcy10;
+        $buhaj->imie_nazwisko_itd_wlasciciela11 = $post->imie_nazwisko_itd_wlasciciela11;
+        $buhaj->ojciec121 = $post->ojciec121;
+        $buhaj->dziadek_ze_strony_ojca1211 = $post->dziadek_ze_strony_ojca1211;
+        $buhaj->babka_ze_strony_ojca1212 = $post->babka_ze_strony_ojca1212;
+        $buhaj->matka122 = $post->matka122;
+        $buhaj->dziadek_ze_strony_matki1221 = $post->dziadek_ze_strony_matki1221;
+        $buhaj->babka_ze_strony_matki1222 = $post->babka_ze_strony_matki1222;
+        $buhaj->wyniki_wartosci_uzytkowej131 = $post->wyniki_wartosci_uzytkowej131;
+        $buhaj->aktualne_wyniki_oceny_genetycznej132 = $post->aktualne_wyniki_oceny_genetycznej132;
+        $buhaj->wady_genetyczne133 = $post->wady_genetyczne133;
+        $buhaj->indywidualny_numer_identyfikacyjny11 = $post->indywidualny_numer_identyfikacyjny11;
+        $buhaj->kolor_opakowan = $post->kolor_opakowan;
+        $buhaj->kod_opakowan = $post->kod_opakowan;
+        $buhaj->liczba_opakowan = $post->liczba_opakowan;
+        $buhaj->miejsce_pobrania_nasienia = $post->miejsce_pobrania_nasienia;
+        $buhaj->data_pobrania_nasienia = $post->data_pobrania_nasienia;
+        $buhaj->miejsce_przezaczenia4 = $post->miejsce_przezaczenia4;
+        $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
+        $buhaj->update();
+        return [
+            'error' => false,
+            'message'=> null,
+        ];
+    }
+    public function actionEditclient($id){
+        $client = Clients::find()->andWhere(['id' => $id])->one();
+        $post = $this->getJsonInput();
+        $client->imie = $post->imie;
+        $client->nazwisko = $post->nazwisko;
+        $client->nazwa_skrocona = $post->nazwa_skrocona;
+        $client->miejscowosc = $post->miejscowosc;
+        $client->kod_pocztowy = $post->kod_pocztowy;
+        $client->poczta = $post->poczta;
+        $client->ulica = $post->ulica;
+        $client->nr_domu = $post->nr_domu;
+        $client->nr_lokalu = $post->nr_lokalu;
+        $client->email = $post->email;
+        $client->telefon = $post->telefon;
+        $client->nip = $post->nip;
+        $client->update();
+        return [
+            'error' => false,
+            'message'=> null,
         ];
     }
 }
