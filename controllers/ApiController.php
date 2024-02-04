@@ -159,6 +159,9 @@ class ApiController extends Controller
             for($i=0;$i<count($post->buhaj_id);$i++){
                 $bh = new BuhajeWydania();
                 $bh->buhaj_id = $post->buhaj_id[$i];
+                $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$post->buhaj_id[$i]])->one();
+                $magazyn->ilosc = $magazyn->ilosc - $post->ilosc;
+                $magazyn->update();
                 $bh->wydanie_id = $wydania->id;
                 $bh->save();
             }

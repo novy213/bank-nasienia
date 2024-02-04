@@ -104,9 +104,11 @@ class m240122_185519_create_table extends Migration
         ]);
         $this -> alterColumn('magazyn','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('magazyn_ilosc', [
+            'id' => $this->primaryKey()->unique(),
             'buhaj_id' => $this->integer(),
             'ilosc' => $this->integer(),
         ]);
+        $this -> alterColumn('magazyn_ilosc','id', $this->integer().' AUTO_INCREMENT');
     }
 
     /**
