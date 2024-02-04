@@ -96,10 +96,16 @@ class m240122_185519_create_table extends Migration
             'wydanie_id' => $this->integer(),
         ]);
         $this->createTable('magazyn', [
+            'id' => $this->primaryKey()->unique(),
             'nr_faktury' => $this->integer(),
             'data' => $this->text(),
-            'buhaj_id' => $this->text(),
-            'ilosc' => $this->text(),
+            'ilosc' => $this->integer(),
+            'buhaj_id' => $this->integer(),
+        ]);
+        $this -> alterColumn('magazyn','id', $this->integer().' AUTO_INCREMENT');
+        $this->createTable('magazyn_ilosc', [
+            'buhaj_id' => $this->integer(),
+            'ilosc' => $this->integer(),
         ]);
     }
 
@@ -114,5 +120,7 @@ class m240122_185519_create_table extends Migration
         $this->dropTable('historia_transakcji_przyjecia');
         $this->dropTable('api_app');
         $this->dropTable('buhaje_wydania');
+        $this->dropTable('magazyn');
+        $this->dropTable('magazyn_ilosc');
     }
 }

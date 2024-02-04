@@ -101,6 +101,21 @@ $config = [
                     'route' => '/api/editclient',
                     'verb' => 'POST',
                 ],
+                [
+                    'pattern' => '/adddostawa',
+                    'route' => '/api/adddostawa',
+                    'verb' => 'POST',
+                ],
+                [
+                    'pattern' => '/getdostawa',
+                    'route' => '/api/getdostawa',
+                    'verb' => 'GET',
+                ],
+                [
+                    'pattern' => '/getilosc',
+                    'route' => '/api/getilosc',
+                    'verb' => 'GET',
+                ],
             ],
         ],
     ],

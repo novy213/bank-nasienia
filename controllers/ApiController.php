@@ -9,6 +9,9 @@ use app\models\Clients;
 use app\models\HistoriaTransakcji;
 use app\models\HistoriaTransakcjiPrzyjecia;
 use app\models\HistoriaTransakcjiWydania;
+use app\models\Magazyn;
+use app\models\MagazynIlosc;
+use Cassandra\Date;
 
 class ApiController extends Controller
 {
@@ -276,6 +279,68 @@ class ApiController extends Controller
         return [
             'error' => false,
             'message'=> null,
+        ];
+    }
+    public function actionAdddostawa(){
+        $post = $this->getJsonInput();
+        $exsist = MagazynIlosc::find()->andWhere(['buhaj_id' => $post->buhaj_id])->one();
+        if(is_null($exsist)){
+            $ilosc = new MagazynIlosc();
+            $ilosc->buhaj_id = $post->buhaj_id;
+            $ilosc->ilosc = $post->ilosc;
+            $ilosc->save();
+        }
+        else{
+            $exsist->ilosc.=$post->ilosc;
+            $exsist->update();
+        }
+        $magazyn = new Magazyn();
+        $data = new \DateTime();
+        $magazyn->data = $data->format("Y:m:d");
+        $magazyn->buhaj_id = $post->buhaj_id;
+        $magazyn->ilosc = $post->ilosc;
+        $magazyn->nr_faktury = $post->nr_faktury;
+        if($magazyn->validate()){
+            $magazyn->save();
+            return [
+                'error' => false,
+                'message'=> null,
+            ];
+        }
+    }
+    public function actionGetdostawa(){
+        $magazyn = Magazyn::find()->all();
+        $faktury = array();
+        for($i=0;$i<count($magazyn);$i++){
+            $buhaj = Buhaj::find()->andWhere(['id'=>$magazyn[$i]->buhaj_id])->one();
+            $faktury[] = [
+                'id' => $magazyn[$i]->id,
+                'nr_faktury' => $magazyn[$i]->nr_faktury,
+                'data' => $magazyn[$i]->data,
+                'ilosc' => $magazyn[$i]->ilosc,
+                'indywidualny_numer_indentyfikacjyny' => $buhaj->indywidualny_numer_indentyfikacjyny72,
+            ];
+        }
+        return[
+            'error' => false,
+            'messgae'=> null,
+            'magazyn' => $faktury
+        ];
+    }
+    public function actionGetilosc(){
+        $magazyn = MagazynIlosc::find()->all();
+        $faktury = array();
+        for($i=0;$i<count($magazyn);$i++){
+            $buhaj = Buhaj::find()->andWhere(['id'=>$magazyn[$i]->buhaj_id])->one();
+            $faktury[] = [
+                'ilosc' => $magazyn[$i]->ilosc,
+                'indywidualny_numer_indentyfikacjyny' => $buhaj->indywidualny_numer_indentyfikacjyny72,
+            ];
+        }
+        return[
+            'error' => false,
+            'messgae'=> null,
+            'ilosc' => $faktury
         ];
     }
 }
