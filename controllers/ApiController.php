@@ -215,6 +215,7 @@ class ApiController extends Controller
         $ret = array();
         for($i=0;$i<count($historia);$i++){
             $client = Clients::find()->andWhere(['id'=>$historia[$i]->klient_id])->one();
+
             $ret[] = [
                 'id'=>$historia[$i]->id,
                 'klient'=>$client,
@@ -294,7 +295,7 @@ class ApiController extends Controller
             $ilosc->save();
         }
         else{
-            $exsist->ilosc.=$post->ilosc;
+            $exsist->ilosc = $exsist->ilosc + $post->ilosc;
             $exsist->update();
         }
         $magazyn = new Magazyn();
