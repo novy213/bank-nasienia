@@ -97,7 +97,7 @@ class m240122_185519_create_table extends Migration
         ]);
         $this->createTable('magazyn', [
             'id' => $this->primaryKey()->unique(),
-            'nr_faktury' => $this->integer(),
+            'nr_faktury' => $this->text(),
             'data' => $this->text(),
             'ilosc' => $this->integer(),
             'buhaj_id' => $this->integer(),

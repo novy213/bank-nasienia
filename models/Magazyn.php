@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "magazyn".
  *
  * @property int $id
- * @property int|null $nr_faktury
+ * @property string|null $nr_faktury
  * @property string|null $data
  * @property int|null $ilosc
  * @property int|null $buhaj_id
@@ -29,7 +29,7 @@ class Magazyn extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nr_faktury', 'ilosc', 'buhaj_id'], 'integer'],
+            [['ilosc', 'buhaj_id'], 'integer'],
             [['data'], 'string'],
         ];
     }
