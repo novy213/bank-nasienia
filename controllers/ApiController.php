@@ -94,7 +94,7 @@ class ApiController extends Controller
             $historia = new HistoriaTransakcjiPrzyjecia();
             $historia->buhaj_id = $buhaj->id;
             $date = new \DateTime();
-            $historia->data = $date->format("Y:m:d");
+            $historia->data = $date->format("Y-m-d");
             if($historia->validate()){
                 $historia->save();
                 return [
@@ -151,9 +151,9 @@ class ApiController extends Controller
         $post = $this->getJsonInput();
         $wydania = new HistoriaTransakcjiWydania();
         $wydania->klient_id = $post->klient_id;
-        $wydania->ilosc = count($post->buhaj_id);
+        $wydania->ilosc = $post->ilosc;
         $data = new \DateTime();
-        $wydania->data = $data->format("Y:m:d");
+        $wydania->data = $data->format("Y-m-d");
         if($wydania->validate()){
             $wydania->save();
             for($i=0;$i<count($post->buhaj_id);$i++){
@@ -299,7 +299,7 @@ class ApiController extends Controller
         }
         $magazyn = new Magazyn();
         $data = new \DateTime();
-        $magazyn->data = $data->format("Y:m:d");
+        $magazyn->data = $data->format("Y-m-d");
         $magazyn->buhaj_id = $post->buhaj_id;
         $magazyn->ilosc = $post->ilosc;
         $magazyn->nr_faktury = $post->nr_faktury;
