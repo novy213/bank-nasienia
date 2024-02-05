@@ -166,11 +166,11 @@ class ApiController extends Controller
                 $bh->wydanie_id = $wydania->id;
                 $bh->save();
             }
-            return [
-                'error' => false,
-                'message' => null,
-            ];
         }
+        return [
+            'error' => false,
+            'message' => null,
+        ];
     }
     public function actionDeletebuhaj($id){
         $buhaj = Buhaj::find()->andWhere(['id'=>$id])->one();
