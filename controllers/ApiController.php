@@ -149,32 +149,27 @@ class ApiController extends Controller
     }
     public function actionAddwydanie(){
         $post = $this->getJsonInput();
+        for($i=0;$i<count($post->buhaj);$i++){
         $wydania = new HistoriaTransakcjiWydania();
         $wydania->klient_id = $post->klient_id;
-        $wydania->ilosc = $post->ilosc;
         $data = new \DateTime();
         $wydania->data = $data->format("Y-m-d");
         if($wydania->validate()){
             $wydania->save();
-            for($i=0;$i<count($post->buhaj);$i++){
                 $bh = new BuhajeWydania();
                 $bh->buhaj_id = $post->buhaj[$i]->buhaj_id;
                 $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$post->buhaj[$i]->buhaj_id])->one();
                 $magazyn->buhaj_id = $post->buhaj[$i]->buhaj_id;
                 $magazyn->ilosc = $magazyn->ilosc - $post->buhaj[$i]->ilosc;
                 $magazyn->update();
+                $wydania->ilosc = $post->buhaj[$i]->ilosc;
                 $bh->wydanie_id = $wydania->id;
+                $wydania->update();
                 $bh->save();
             }
             return [
                 'error' => false,
                 'message' => null,
-            ];
-        }
-        else {
-            return[
-                'error' => true,
-                'message' => $wydania->getErrorSummary(false)
             ];
         }
     }
