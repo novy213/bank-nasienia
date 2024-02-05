@@ -156,11 +156,12 @@ class ApiController extends Controller
         $wydania->data = $data->format("Y-m-d");
         if($wydania->validate()){
             $wydania->save();
-            for($i=0;$i<count($post->buhaj_id);$i++){
+            for($i=0;$i<count($post->buhaj);$i++){
                 $bh = new BuhajeWydania();
-                $bh->buhaj_id = $post->buhaj_id[$i];
-                $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$post->buhaj_id[$i]])->one();
-                $magazyn->ilosc = $magazyn->ilosc - $post->ilosc;
+                $bh->buhaj_id = $post->buhaj[$i]->buhaj_id;
+                $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$post->buhaj[$i]->buhaj_id])->one();
+                $magazyn->buhaj_id = $post->buhaj[$i]->buhaj_id;
+                $magazyn->ilosc = $magazyn->ilosc - $post->buhaj[$i]->ilosc;
                 $magazyn->update();
                 $bh->wydanie_id = $wydania->id;
                 $bh->save();
