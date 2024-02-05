@@ -347,4 +347,25 @@ class ApiController extends Controller
             'ilosc' => $faktury
         ];
     }
+    public function actionZmienilosc(){
+        $post = $this->getJsonInput();
+        $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_indentyfikacjyny72' => $post->indywidualny_numer_indentyfikacjyny72])->one();
+        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id' => $buhaj->id])->one();
+        $magazyn->ilosc = $post->ilosc;
+        $magazyn->update();
+        return[
+            'error' => false,
+            'messgae'=> null,
+        ];
+    }
+    public function actionDeleteilosc(){
+        $post = $this->getJsonInput();
+        $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_indentyfikacjyny72' => $post->indywidualny_numer_indentyfikacjyny72])->one();
+        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id' => $buhaj->id])->one();
+        $magazyn->delete();
+        return[
+            'error' => false,
+            'messgae'=> null,
+        ];
+    }
 }

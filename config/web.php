@@ -116,6 +116,16 @@ $config = [
                     'route' => '/api/getilosc',
                     'verb' => 'GET',
                 ],
+                [
+                    'pattern' => '/zmienilosc',
+                    'route' => '/api/zmienilosc',
+                    'verb' => 'POST',
+                ],
+                [
+                    'pattern' => '/deleteilosc',
+                    'route' => '/api/deleteilosc',
+                    'verb' => 'DELETE',
+                ],
             ],
         ],
     ],
