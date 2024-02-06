@@ -12,23 +12,23 @@
     <input type="password" name="pass"><br><br>
     <input type="file" name="file" id="file"><br><br>
     <input type="submit" name="submit">
-    <?php
-    if(isset($_POST['pass'])){
-        if($_POST['pass'] == 'alamakotaadmin'){
-            $filename = $_FILES['file']['name'];
-            $location = "./".$filename;
-            if($filename) {
-                $serverPath = 'http://localhost/'.$filename;
-                if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
-                    echo "Plik został przesłany poprawnie<br>";
-                } else {
-                    echo "Plik nie został przesłany poprawnie<br>";
-                    die;
-                }
+</form>
+<?php
+if(isset($_POST['submit'])){
+    if($_POST['pass'] == 'alamakotaadmin'){
+        $filename = $_FILES['file']['name'];
+        $location = "./".$filename;
+        if($filename) {
+            $serverPath = 'http://localhost/'.$filename;
+            if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+                echo "Plik został przesłany poprawnie<br>";
+            } else {
+                echo "Plik nie został przesłany poprawnie<br>";
+                die;
             }
         }
     }
-    ?>
-</form>
+}
+?>
 </body>
 </html>
