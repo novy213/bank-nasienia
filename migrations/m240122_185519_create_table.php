@@ -30,7 +30,7 @@ class m240122_185519_create_table extends Migration
         $this -> alterColumn('clients','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('buhaj', [
             'id' => $this->primaryKey()->notNull()->unique(),
-            'numer_swiadectwa' => $this->integer(),
+            'numer_swiadectwa' => $this->text(),
             'nazwa_zwiazku_hodowcow1' => $this->text()->defaultValue("Testowy zwiazek hodowcow"),
             'nazwa_ksiegi_hodowlanej2' => $this->text(),
             'nazwa_rasy_samca_dawcy3' => $this->text(),
@@ -111,7 +111,7 @@ class m240122_185519_create_table extends Migration
         $this -> alterColumn('magazyn_ilosc','id', $this->integer().' AUTO_INCREMENT');
         $this->createTable('archiwum', [
             'id' => $this->primaryKey()->notNull()->unique(),
-            'numer_swiadectwa' => $this->integer(),
+            'numer_swiadectwa' => $this->text(),
             'nazwa_zwiazku_hodowcow1' => $this->text()->defaultValue("Testowy zwiazek hodowcow"),
             'nazwa_ksiegi_hodowlanej2' => $this->text(),
             'nazwa_rasy_samca_dawcy3' => $this->text(),
