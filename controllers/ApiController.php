@@ -368,6 +368,7 @@ class ApiController extends Controller
     public function actionAddmetryczka(){
         $post = $this->getJsonInput();
         $buhaj = new Archiwum();
+        $buhaj->numer_swiadectwa = $post->numer_swiadectwa;
         $buhaj->nazwa_ksiegi_hodowlanej2 = $post->nazwa_ksiegi_hodowlanej2;
         $buhaj->nazwa_rasy_samca_dawcy3 = $post->nazwa_rasy_samca_dawcy3;
         $buhaj->numer_samca_dawcy_w_kh5 = $post->numer_samca_dawcy_w_kh5;
