@@ -14,7 +14,7 @@ use app\models\Magazyn;
 use app\models\MagazynIlosc;
 use Cassandra\Date;
 
-class ApiController extends \yii\web\Controller
+class ApiController extends Controller
 {
     /**
      * {@inheritdoc}
