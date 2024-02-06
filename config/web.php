@@ -102,6 +102,11 @@ $config = [
                     'verb' => 'POST',
                 ],
                 [
+                    'pattern' => '/addmetryczka',
+                    'route' => '/api/ddmetryczka',
+                    'verb' => 'POST',
+                ],
+                [
                     'pattern' => '/adddostawa',
                     'route' => '/api/adddostawa',
                     'verb' => 'POST',
@@ -125,11 +130,6 @@ $config = [
                     'pattern' => '/deleteilosc',
                     'route' => '/api/deleteilosc',
                     'verb' => 'DELETE',
-                ],
-                [
-                    'pattern' => '/addmetryczka',
-                    'route' => '/api/addmetryczka',
-                    'verb' => 'POST',
                 ],
                 [
                     'pattern' => '/getarchiwum',
