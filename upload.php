@@ -19,7 +19,6 @@ if(isset($_POST['submit'])){
         $filename = $_FILES['file']['name'];
         $location = "./".$filename;
         if($filename) {
-            $serverPath = 'http://localhost/'.$filename;
             if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
                 echo "Plik został przesłany poprawnie<br>";
             } else {
