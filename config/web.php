@@ -126,6 +126,21 @@ $config = [
                     'route' => '/api/deleteilosc',
                     'verb' => 'DELETE',
                 ],
+                [
+                    'pattern' => '/addmetryczka',
+                    'route' => '/api/addmetryczka',
+                    'verb' => 'POST',
+                ],
+                [
+                    'pattern' => '/getarchiwum',
+                    'route' => '/api/getarchiwum',
+                    'verb' => 'GET',
+                ],
+                [
+                    'pattern' => '/getmetryczka/<id:\d+>',
+                    'route' => '/api/getmetryczka',
+                    'verb' => 'GET',
+                ],
             ],
         ],
     ],
