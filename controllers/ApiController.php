@@ -402,6 +402,9 @@ class ApiController extends Controller
                 'messgae'=> null,
             ];
         }
+        else {
+            $buhaj->getErrorSummary(false);
+        }
     }
     public function actionGetarchiwum(){
         $archi = Archiwum::find()->all();
