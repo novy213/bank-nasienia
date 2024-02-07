@@ -31,6 +31,7 @@ class m240122_185519_create_table extends Migration
         $this->createTable('buhaj', [
             'id' => $this->primaryKey()->notNull()->unique(),
             'numer_swiadectwa' => $this->text(),
+            'client_id' => $this->integer(),
             'nazwa_zwiazku_hodowcow1' => $this->text()->defaultValue("Testowy zwiazek hodowcow"),
             'nazwa_ksiegi_hodowlanej2' => $this->text(),
             'nazwa_rasy_samca_dawcy3' => $this->text(),

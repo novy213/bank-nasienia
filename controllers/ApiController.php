@@ -369,6 +369,7 @@ class ApiController extends Controller
         $post = $this->getJsonInput();
         $buhaj = new Archiwum();
         $buhaj->numer_swiadectwa = $post->numer_swiadectwa;
+        $buhaj->client_id = $post->client_id;
         $buhaj->nazwa_ksiegi_hodowlanej2 = $post->nazwa_ksiegi_hodowlanej2;
         $buhaj->nazwa_rasy_samca_dawcy3 = $post->nazwa_rasy_samca_dawcy3;
         $buhaj->numer_samca_dawcy_w_kh5 = $post->numer_samca_dawcy_w_kh5;
