@@ -79,6 +79,7 @@ class Archiwum extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'client_id' => 'Client ID',
             'numer_swiadectwa' => 'Numer Swiadectwa',
             'nazwa_zwiazku_hodowcow1' => 'Nazwa Zwiazku Hodowcow1',
             'nazwa_ksiegi_hodowlanej2' => 'Nazwa Ksiegi Hodowlanej2',
