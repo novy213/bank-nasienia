@@ -417,10 +417,12 @@ class ApiController extends Controller
     }
     public function actionGetmetryczka($id){
         $archi = Archiwum::find()->andWhere(['id'=>$id])->one();
+        $client = Clients::find()->andWhere(['id'=>$archi->client_id])->one();
         return[
             'error' => false,
             'messgae'=> null,
-            'archiwum'=>$archi
+            'archiwum'=>$archi,
+            'client' => $client
         ];
     }
 }
