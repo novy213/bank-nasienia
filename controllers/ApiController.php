@@ -335,7 +335,7 @@ class ApiController extends Controller
             $faktury[] = [
                 'ilosc' => $magazyn[$i]->ilosc,
                 'indywidualny_numer_indentyfikacjyny' => $buhaj->indywidualny_numer_indentyfikacjyny72,
-                'nazwa31' => $buhaj->nazwa31,
+                'imie74' => $buhaj->imie74,
             ];
         }
         return[
