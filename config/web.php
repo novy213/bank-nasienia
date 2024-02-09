@@ -141,6 +141,11 @@ $config = [
                     'route' => '/api/getmetryczka',
                     'verb' => 'GET',
                 ],
+                [
+                    'pattern' => '/getmagazyn/<id:\d+>',
+                    'route' => '/api/getmagazyn',
+                    'verb' => 'GET',
+                ],
             ],
         ],
     ],

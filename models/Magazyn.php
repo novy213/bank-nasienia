@@ -12,6 +12,7 @@ use Yii;
  * @property string|null $data
  * @property int|null $ilosc
  * @property int|null $buhaj_id
+ * @property string|null $data_pobrania
  */
 class Magazyn extends \yii\db\ActiveRecord
 {
@@ -29,8 +30,9 @@ class Magazyn extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['nr_faktury', 'data'], 'string'],
             [['ilosc', 'buhaj_id'], 'integer'],
-            [['data'], 'string'],
+            [['data_pobrania'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,6 +47,7 @@ class Magazyn extends \yii\db\ActiveRecord
             'data' => 'Data',
             'ilosc' => 'Ilosc',
             'buhaj_id' => 'Buhaj ID',
+            'data_pobrania' => 'Data Pobrania',
         ];
     }
 }

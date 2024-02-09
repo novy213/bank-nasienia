@@ -300,6 +300,7 @@ class ApiController extends Controller
         $magazyn->buhaj_id = $post->buhaj_id;
         $magazyn->ilosc = $post->ilosc;
         $magazyn->nr_faktury = $post->nr_faktury;
+        $magazyn->data_pobrania = $post->data_pobrania;
         if($magazyn->validate()){
             $magazyn->save();
             return [
@@ -423,6 +424,14 @@ class ApiController extends Controller
             'messgae'=> null,
             'archiwum'=>$archi,
             'client' => $client
+        ];
+    }
+    public function actionGetmagazyn($id){
+        $magazyn = Magazyn::find()->andWhere(['buhaj_id'=>$id])->all();
+        return[
+            'error' => false,
+            'messgae'=> null,
+            'magazyn'=>$magazyn,
         ];
     }
 }
