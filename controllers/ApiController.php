@@ -54,7 +54,7 @@ class ApiController extends Controller
         ];
     }
     public function actionGetbuhaj(){
-        $buhajs = Buhaj::find()->all();
+        $buhajs = Buhaj::find()->orderBy(['imie74' => SORT_ASC])->all();
         return [
             'error' => false,
             'message' => null,
@@ -118,7 +118,7 @@ class ApiController extends Controller
         }
     }
     public function actionGetclients(){
-        $clients = Clients::find()->all();
+        $clients = Clients::find()->orderBy(['last_name' => SORT_ASC])->all();
         return [
             'error' => false,
             'message' => null,
