@@ -319,7 +319,7 @@ class ApiController extends Controller
                 'nr_faktury' => $magazyn[$i]->nr_faktury,
                 'data' => $magazyn[$i]->data,
                 'ilosc' => $magazyn[$i]->ilosc,
-                'indywidualny_numer_indentyfikacjyny' => $buhaj->indywidualny_numer_indentyfikacjyny72,
+                'indywidualny_numer_indentyfikacjyny' => $buhaj->indywidualny_numer_identyfikacyjny11,
             ];
         }
         return[
@@ -432,6 +432,17 @@ class ApiController extends Controller
             'error' => false,
             'messgae'=> null,
             'magazyn'=>$magazyn,
+        ];
+    }
+    public function actionDeleteprzyjecia($id){
+        $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_identyfikacyjny11' => $id])->one();
+        $przyjecia = Magazyn::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
+        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
+        $magazyn->ilosc = $magazyn->ilosc - $przyjecia->ilosc;
+        $przyjecia->delete();
+        return[
+            'error' => false,
+            'messgae'=> null,
         ];
     }
 }

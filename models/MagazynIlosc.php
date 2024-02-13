@@ -7,6 +7,7 @@ use Yii;
 /**
  * This is the model class for table "magazyn_ilosc".
  *
+ * @property int|null $id
  * @property int|null $buhaj_id
  * @property int|null $ilosc
  */
@@ -36,6 +37,7 @@ class MagazynIlosc extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'buhaj_id' => 'Buhaj ID',
             'ilosc' => 'Ilosc',
         ];

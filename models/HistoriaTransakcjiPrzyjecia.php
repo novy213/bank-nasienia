@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string|null $data
- * @property string|null $buhaj_id
+ * @property int|null $buhaj_id
  */
 class HistoriaTransakcjiPrzyjecia extends \yii\db\ActiveRecord
 {
@@ -27,7 +27,7 @@ class HistoriaTransakcjiPrzyjecia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'buhaj_id'], 'string'],
+            [['data'], 'string'],
         ];
     }
 

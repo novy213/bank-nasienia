@@ -146,6 +146,11 @@ $config = [
                     'route' => '/api/getmagazyn',
                     'verb' => 'GET',
                 ],
+                [
+                    'pattern' => '/deleteprzyjecia/<id:[\w-]+>',
+                    'route' => '/api/deleteprzyjecia',
+                    'verb' => 'DELETE',
+                ],
             ],
         ],
     ],
