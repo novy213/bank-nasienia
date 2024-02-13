@@ -360,6 +360,8 @@ class ApiController extends Controller
         $post = $this->getJsonInput();
         $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_indentyfikacjyny72' => $post->indywidualny_numer_indentyfikacjyny72])->one();
         $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id' => $buhaj->id])->one();
+        $przyjecia = HistoriaTransakcjiPrzyjecia::find()->andWhere(['id'=>$magazyn->id])->one();
+        $przyjecia->delete();
         $magazyn->delete();
         return[
             'error' => false,
@@ -434,12 +436,79 @@ class ApiController extends Controller
             'magazyn'=>$magazyn,
         ];
     }
-    public function actionDeleteprzyjecia($id){
+    public function actionDeleteprzyjecia($id)
+    {
         $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_identyfikacyjny11' => $id])->one();
-        $przyjecia = Magazyn::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
-        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
+        $przyjecia = Magazyn::find()->andWhere(['buhaj_id' => $buhaj->id])->one();
+        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id' => $buhaj->id])->one();
         $magazyn->ilosc = $magazyn->ilosc - $przyjecia->ilosc;
+        $magazyn->update();
         $przyjecia->delete();
+        return[
+            'error' => false,
+            'messgae'=> null,
+        ];
+    }
+    public function actionDeletemetryczka($id){
+        $metryczka = Archiwum::find()->andWhere(['id' => $id])->one();
+        $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_identyfikacyjny11' => $metryczka->indywidualny_numer_identyfikacyjny11])->one();
+        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
+        $historia = HistoriaTransakcjiWydania::find()->andWhere(['id' => $metryczka->id])->one();
+        $magazyn->ilosc = $magazyn->ilosc + $metryczka->liczba_opakowan;
+        $magazyn->update();
+        $metryczka->delete();
+        $historia->delete();
+        return[
+            'error' => false,
+            'messgae'=> null,
+        ];
+    }
+    public function actionEditmetryczka($id){
+        $post = $this->getJsonInput();
+        $buhaj = Archiwum::find()->andWhere(['id' => $id])->one();
+        $buhaj->numer_swiadectwa = $post->numer_swiadectwa;
+        $buhaj->client_id = $post->client_id;
+        $buhaj->nazwa_ksiegi_hodowlanej2 = $post->nazwa_ksiegi_hodowlanej2;
+        $buhaj->nazwa_rasy_samca_dawcy3 = $post->nazwa_rasy_samca_dawcy3;
+        $buhaj->numer_samca_dawcy_w_kh5 = $post->numer_samca_dawcy_w_kh5;
+        $buhaj->indywidualny_numer_indentyfikacjyny72 = $post->indywidualny_numer_indentyfikacjyny72;
+        $buhaj->wynik82 = $post->wynik82;
+        $buhaj->imie74 = $post->imie74;
+        $buhaj->data_kraj_urodzenia_samca_dawcy9 = $post->data_kraj_urodzenia_samca_dawcy9;
+        $buhaj->imie_nazwisko_itd_hodowcy10 = $post->imie_nazwisko_itd_hodowcy10;
+        $buhaj->imie_nazwisko_itd_wlasciciela11 = $post->imie_nazwisko_itd_wlasciciela11;
+        $buhaj->ojciec121 = $post->ojciec121;
+        $buhaj->dziadek_ze_strony_ojca1211 = $post->dziadek_ze_strony_ojca1211;
+        $buhaj->babka_ze_strony_ojca1212 = $post->babka_ze_strony_ojca1212;
+        $buhaj->matka122 = $post->matka122;
+        $buhaj->dziadek_ze_strony_matki1221 = $post->dziadek_ze_strony_matki1221;
+        $buhaj->babka_ze_strony_matki1222 = $post->babka_ze_strony_matki1222;
+        $buhaj->wyniki_wartosci_uzytkowej131 = $post->wyniki_wartosci_uzytkowej131;
+        $buhaj->aktualne_wyniki_oceny_genetycznej132 = $post->aktualne_wyniki_oceny_genetycznej132;
+        $buhaj->wady_genetyczne133 = $post->wady_genetyczne133;
+        $buhaj->indywidualny_numer_identyfikacyjny11 = $post->indywidualny_numer_identyfikacyjny11;
+        $buhaj->kolor_opakowan = $post->kolor_opakowan;
+        $buhaj->kod_opakowan = $post->kod_opakowan;
+        $buhaj->liczba_opakowan = $post->liczba_opakowan;
+        $buhaj->miejsce_pobrania_nasienia = $post->miejsce_pobrania_nasienia;
+        $buhaj->data_pobrania_nasienia = $post->data_pobrania_nasienia;
+        $buhaj->miejsce_przezaczenia4 = $post->miejsce_przezaczenia4;
+        $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
+        $buhaj->update();
+        return[
+            'error' => false,
+            'messgae'=> null,
+        ];
+    }
+    public function actionDeletewydania($id){
+        $wydania = HistoriaTransakcjiWydania::find()->andWhere(['id'=>$id])->one();
+        $archiwum = Archiwum::find()->andWhere(['id'=>$id])->one();
+        $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_identyfikacyjny11' => $archiwum->indywidualny_numer_identyfikacyjny11])->one();
+        $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
+        $magazyn->ilosc = $magazyn->ilosc + $wydania->ilosc;
+        $wydania->delete();
+        $archiwum->delete();
+        $magazyn->update();
         return[
             'error' => false,
             'messgae'=> null,

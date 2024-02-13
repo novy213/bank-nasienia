@@ -151,6 +151,21 @@ $config = [
                     'route' => '/api/deleteprzyjecia',
                     'verb' => 'DELETE',
                 ],
+                [
+                    'pattern' => '/deletemetryczka/<id:[\w-]+>',
+                    'route' => '/api/deletemetryczka',
+                    'verb' => 'DELETE',
+                ],
+                [
+                    'pattern' => '/editmetryczka/<id:[\w-]+>',
+                    'route' => '/api/editmetryczka',
+                    'verb' => 'PUT',
+                ],
+                [
+                    'pattern' => '/deletewydania/<id:[\w-]+>',
+                    'route' => '/api/deletewydania',
+                    'verb' => 'DELETE',
+                ],
             ],
         ],
     ],
