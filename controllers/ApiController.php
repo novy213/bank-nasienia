@@ -412,10 +412,71 @@ class ApiController extends Controller
     }
     public function actionGetarchiwum(){
         $archi = Archiwum::find()->all();
+        $res = array();
+        for($i=0;$i<count($archi);$i++){
+            $client = Clients::find()->andWhere(['id'=>$archi[$i]->client_id])->one();
+            $res[] = [
+                'id' => $archi[$i]->id,
+                'numer_swiadectwa' => $archi[$i]->numer_swiadectwa,
+                'nazwa_zwiazku_hodowcow1' => $archi[$i]->nazwa_zwiazku_hodowcow1,
+                'client_id' => $archi[$i]->client_id,
+                'nazwa_ksiegi_hodowlanej2' => $archi[$i]->nazwa_ksiegi_hodowlanej2,
+                'nazwa_rasy_samca_dawcy3' => $archi[$i]->nazwa_rasy_samca_dawcy3,
+                'numer_samca_dawcy_w_kh5' => $archi[$i]->numer_samca_dawcy_w_kh5,
+                'identyfikacyjny_numer_dla_samca_dawcy6' => $archi[$i]->identyfikacyjny_numer_dla_samca_dawcy6,
+                'system71' => $archi[$i]->system71,
+                'metoda81' => $archi[$i]->metoda81,
+                'indywidualny_numer_indentyfikacjyny72' => $archi[$i]->indywidualny_numer_indentyfikacjyny72,
+                'weterynaryjny_numer_indentyfikacjyny73' => $archi[$i]->weterynaryjny_numer_indentyfikacjyny73,
+                'wynik82' => $archi[$i]->wynik82,
+                'imie74' => $archi[$i]->imie74,
+                'data_kraj_urodzenia_samca_dawcy9' => $archi[$i]->data_kraj_urodzenia_samca_dawcy9,
+                'imie_nazwisko_itd_hodowcy10' => $archi[$i]->imie_nazwisko_itd_hodowcy10,
+                'imie_nazwisko_itd_wlasciciela11' => $archi[$i]->imie_nazwisko_itd_wlasciciela11,
+                'ojciec121' => $archi[$i]->ojciec121,
+                'dziadek_ze_strony_ojca1211' => $archi[$i]->dziadek_ze_strony_ojca1211,
+                'babka_ze_strony_ojca1212' => $archi[$i]->babka_ze_strony_ojca1212,
+                'matka122' => $archi[$i]->matka122,
+                'dziadek_ze_strony_matki1221' => $archi[$i]->dziadek_ze_strony_matki1221,
+                'babka_ze_strony_matki1222' => $archi[$i]->babka_ze_strony_matki1222,
+                'wyniki_wartosci_uzytkowej131' => $archi[$i]->wyniki_wartosci_uzytkowej131,
+                'aktualne_wyniki_oceny_genetycznej132' => $archi[$i]->aktualne_wyniki_oceny_genetycznej132,
+                'wady_genetyczne133' => $archi[$i]->wady_genetyczne133,
+                'indywidualny_numer_identyfikacyjny11' => $archi[$i]->indywidualny_numer_identyfikacyjny11,
+                'weterynaryjny12' => $archi[$i]->weterynaryjny12,
+                'indywidualny_numer_samca_dawcy13' => $archi[$i]->indywidualny_numer_samca_dawcy13,
+                'odniesienie_swiadectwa_zootechnicznego14' => $archi[$i]->odniesienie_swiadectwa_zootechnicznego14,
+                'kolor_opakowan' => $archi[$i]->kolor_opakowan,
+                'kod_opakowan' => $archi[$i]->kod_opakowan,
+                'liczba_opakowan' => $archi[$i]->liczba_opakowan,
+                'miejsce_pobrania_nasienia' => $archi[$i]->miejsce_pobrania_nasienia,
+                'data_pobrania_nasienia' => $archi[$i]->data_pobrania_nasienia,
+                'nazwa31' => $archi[$i]->nazwa31,
+                'adres32' => $archi[$i]->adres32,
+                'numer_zatwierdzenia33' => $archi[$i]->numer_zatwierdzenia33,
+                'miejsce_przezaczenia4' => $archi[$i]->miejsce_przezaczenia4,
+                'sporzadzono_w61' => $archi[$i]->sporzadzono_w61,
+                'w_dniu62' => $archi[$i]->w_dniu62,
+                'inne_istotne_informacje' => $archi[$i]->inne_istotne_informacje,
+                'imie_nazwisko_osoby_podpisujacej63' => $archi[$i]->imie_nazwisko_osoby_podpisujacej63,
+                'imie' => $client->imie,
+                'nazwisko' => $client->nazwisko,
+                'nazwa_skrocona' => $client->nazwa_skrocona,
+                'miejscowosc' => $client->miejscowosc,
+                'kod_pocztowy' => $client->kod_pocztowy,
+                'poczta' => $client->poczta,
+                'ulica' => $client->ulica,
+                'nr_domu' => $client->nr_domu,
+                'nr_lokalu' => $client->nr_lokalu,
+                'nip' => $client->nip,
+                'email' => $client->email,
+                'telefon' => $client->telefon,
+            ];
+        }
         return[
             'error' => false,
             'messgae'=> null,
-            'archiwum'=>$archi
+            'archiwum'=>$res
         ];
     }
     public function actionGetmetryczka($id){
