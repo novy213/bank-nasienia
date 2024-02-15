@@ -515,8 +515,10 @@ class ApiController extends Controller
         $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_identyfikacyjny11' => $metryczka->indywidualny_numer_identyfikacyjny11])->one();
         $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
         $historia = HistoriaTransakcjiWydania::find()->andWhere(['id' => $metryczka->id])->one();
-        $magazyn->ilosc = $magazyn->ilosc + $metryczka->liczba_opakowan;
-        $magazyn->update();
+        if(!is_null($magazyn)){
+            $magazyn->ilosc = $magazyn->ilosc + $metryczka->liczba_opakowan;
+            $magazyn->update();
+        }
         $metryczka->delete();
         $historia->delete();
         return[
