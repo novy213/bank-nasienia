@@ -10,6 +10,5 @@ if (file_exists($file)) {
     header('Pragma: public');
     header('Content-Length: ' . filesize($file));
     readfile($file);
-    exit;
 }
 ?>
