@@ -12,6 +12,7 @@ use app\models\HistoriaTransakcjiPrzyjecia;
 use app\models\HistoriaTransakcjiWydania;
 use app\models\Magazyn;
 use app\models\MagazynIlosc;
+use app\models\Version;
 use Cassandra\Date;
 
 class ApiController extends Controller
@@ -575,6 +576,14 @@ class ApiController extends Controller
         return[
             'error' => false,
             'messgae'=> null,
+        ];
+    }
+    public function actionGetversion(){
+        $version = Version::find()->one();
+        return[
+            'error' => false,
+            'messgae'=> null,
+            'version'=>$version->version
         ];
     }
 }

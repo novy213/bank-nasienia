@@ -166,6 +166,11 @@ $config = [
                     'route' => '/api/deletewydania',
                     'verb' => 'DELETE',
                 ],
+                [
+                    'pattern' => '/version',
+                    'route' => '/api/getversion',
+                    'verb' => 'GET',
+                ],
             ],
         ],
     ],

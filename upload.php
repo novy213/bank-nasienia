@@ -16,16 +16,23 @@
 <?php
 if(isset($_POST['submit'])){
     if($_POST['pass'] == 'alamakotaadmin'){
-        $filename = $_FILES['file']['name'];
-        $location = "./".$filename;
-        if($filename) {
-            if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
-                echo "Plik został przesłany poprawnie<br>";
-            } else {
-                echo "Plik nie został przesłany poprawnie<br>";
-                die;
-            }
+    if ($_FILES['file']['error'] !== UPLOAD_ERR_OK) {
+        echo "Wystąpił błąd podczas przesyłania pliku.";
+        die;
+    }
+    $filename = $_FILES['file']['name'];
+    $location = "./".$filename;
+    if($filename) {
+        if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+            echo "Plik został przesłany poprawnie<br>";
+        } else {
+            echo "Plik nie został przesłany poprawnie<br>";
+            die;
         }
+    }
+    }
+    else{
+        echo "Błędne hasło";
     }
 }
 ?>
