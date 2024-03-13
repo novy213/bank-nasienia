@@ -461,7 +461,7 @@ class ApiController extends Controller
                 'inne_istotne_informacje' => $archi[$i]->inne_istotne_informacje,
                 'imie_nazwisko_osoby_podpisujacej63' => $archi[$i]->imie_nazwisko_osoby_podpisujacej63,
                 'imie' => isset($client->imie) ? $client->imie : null,
-                'nazwisko' => $client->nazwisko,
+                'nazwisko' => isset($client->nazwisko) ? $client->nazwisko : null,
                 'nazwa_skrocona' => $client->nazwa_skrocona,
                 'miejscowosc' => $client->miejscowosc,
                 'kod_pocztowy' => $client->kod_pocztowy,
