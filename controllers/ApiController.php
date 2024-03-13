@@ -460,7 +460,7 @@ class ApiController extends Controller
                 'w_dniu62' => $archi[$i]->w_dniu62,
                 'inne_istotne_informacje' => $archi[$i]->inne_istotne_informacje,
                 'imie_nazwisko_osoby_podpisujacej63' => $archi[$i]->imie_nazwisko_osoby_podpisujacej63,
-                'imie' => $client->imie,
+                'imie' => isset($client->imie) ? $client->imie : null,
                 'nazwisko' => $client->nazwisko,
                 'nazwa_skrocona' => $client->nazwa_skrocona,
                 'miejscowosc' => $client->miejscowosc,
