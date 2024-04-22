@@ -164,6 +164,9 @@ class ApiController extends Controller
                 $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$post->buhaj[$i]->buhaj_id])->one();
                 $magazyn->buhaj_id = $post->buhaj[$i]->buhaj_id;
                 $magazyn->ilosc = $magazyn->ilosc - $post->buhaj[$i]->ilosc;
+                if($magazyn->ilosc < 0){
+                    $magazyn->delete();
+                }
                 $magazyn->update();
                 $bh->wydanie_id = $wydania->id;
                 $bh->save();
@@ -516,15 +519,23 @@ class ApiController extends Controller
         $buhaj = Buhaj::find()->andWhere(['indywidualny_numer_identyfikacyjny11' => $metryczka->indywidualny_numer_identyfikacyjny11])->one();
         $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$buhaj->id])->one();
         $historia = HistoriaTransakcjiWydania::find()->andWhere(['id' => $metryczka->id])->one();
-        if(!is_null($magazyn)){
-            $magazyn->ilosc = $magazyn->ilosc + $metryczka->liczba_opakowan;
-            $magazyn->update();
+        if (!is_null($magazyn)) {
+
+            $iloscMagazyn = intval($magazyn->ilosc);
+            $liczbaOpakowan = intval($metryczka->liczba_opakowan);
+
+
+            $magazyn->ilosc = $iloscMagazyn + $liczbaOpakowan;
+            $magazyn->update(); 
         }
+
+
         $metryczka->delete();
         $historia->delete();
-        return[
+
+        return [
             'error' => false,
-            'messgae'=> null,
+            'message' => null,
         ];
     }
     public function actionEditmetryczka($id){
