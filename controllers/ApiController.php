@@ -164,9 +164,9 @@ class ApiController extends Controller
                 $magazyn = MagazynIlosc::find()->andWhere(['buhaj_id'=>$post->buhaj[$i]->buhaj_id])->one();
                 $magazyn->buhaj_id = $post->buhaj[$i]->buhaj_id;
                 $magazyn->ilosc = $magazyn->ilosc - $post->buhaj[$i]->ilosc;
-                if($magazyn->ilosc < 0){
+                /*if($magazyn->ilosc < 0){
                     $magazyn->delete();
-                }
+                }*/
                 $magazyn->update();
                 $bh->wydanie_id = $wydania->id;
                 $bh->save();
