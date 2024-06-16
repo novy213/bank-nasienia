@@ -406,13 +406,13 @@ class ApiController extends Controller
         $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
         if($buhaj->validate()){
             $buhaj->save();
-            $data = $post->data_save;
-            for($i=0; $i<count($data); $i++){
-                $data = new DataPobraniaZapis();
-                $data->archiwum_id = $buhaj->id;
-                $data->ilosc = $post->data_save[$i]->ilosc;
-                $data->date = $post->data_save[$i]->date;
-                $data->save();
+            $date = $post->data_save;
+            for($i=0; $i<count($date); $i++){
+                $date = new DataPobraniaZapis();
+                $date->archiwum_id = $buhaj->id;
+                $date->ilosc = $date[$i]->ilosc;
+                $date->date = $date[$i]->date;
+                $date->save();
             }
             return[
                 'error' => false,
