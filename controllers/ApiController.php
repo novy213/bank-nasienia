@@ -7,6 +7,7 @@ use app\models\Archiwum;
 use app\models\Buhaj;
 use app\models\BuhajeWydania;
 use app\models\Clients;
+use app\models\DataPobraniaZapis;
 use app\models\HistoriaTransakcji;
 use app\models\HistoriaTransakcjiPrzyjecia;
 use app\models\HistoriaTransakcjiWydania;
@@ -403,6 +404,13 @@ class ApiController extends Controller
         $buhaj->data_pobrania_nasienia = $post->data_pobrania_nasienia;
         $buhaj->miejsce_przezaczenia4 = $post->miejsce_przezaczenia4;
         $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
+        $data = $post->data_save;
+        for($i=0; $i<count($data); $i++){
+            $data = new DataPobraniaZapis();
+            $data->ilosc = $post->data_save[$i]->ilosc;
+            $data->data = $post->data_save[$i]->data;
+            $data->save();
+        }
         if($buhaj->validate()){
             $buhaj->save();
             return[
@@ -419,6 +427,7 @@ class ApiController extends Controller
         $res = array();
         for($i=0;$i<count($archi);$i++){
             $client = Clients::find()->andWhere(['id'=>$archi[$i]->client_id])->one();
+            $zapis = DataPobraniaZapis::find()->andWhere(['id'=>$archi[$i]->id])->one();
             $res[] = [
                 'id' => $archi[$i]->id,
                 'numer_swiadectwa' => $archi[$i]->numer_swiadectwa,
@@ -475,6 +484,7 @@ class ApiController extends Controller
                 'nip' => isset($client->nip) ? $client->nazwisko : null,
                 'email' => isset($client->email) ? $client->nazwisko : null,
                 'telefon' => isset($client->telefon) ? $client->nazwisko : null,
+                'data' => isset($zapis->data) ? $zapis->data : null,
             ];
         }
         return[
