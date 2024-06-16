@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int|null $archiwum_id
- * @property string|null $data
+ * @property string|null $date
  * @property int|null $ilosc
  */
 class DataPobraniaZapis extends \yii\db\ActiveRecord
@@ -29,7 +29,7 @@ class DataPobraniaZapis extends \yii\db\ActiveRecord
     {
         return [
             [['archiwum_id', 'ilosc'], 'integer'],
-            [['data'], 'string'],
+            [['date'], 'string'],
         ];
     }
 
@@ -41,7 +41,7 @@ class DataPobraniaZapis extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'archiwum_id' => 'Archiwum ID',
-            'data' => 'Data',
+            'date' => 'Data',
             'ilosc' => 'Ilosc',
         ];
     }

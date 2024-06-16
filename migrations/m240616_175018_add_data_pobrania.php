@@ -15,7 +15,7 @@ class m240616_175018_add_data_pobrania extends Migration
         $this->createTable('data_pobrania_zapis', [
             'id' => $this->primaryKey()->notNull()->unique(),
             'archiwum_id' => $this->integer(),
-            'data' => $this->text(),
+            'date' => $this->text(),
             'ilosc' => $this->integer(),
         ]);
         $this -> alterColumn('data_pobrania_zapis','id', $this->integer().' AUTO_INCREMENT');

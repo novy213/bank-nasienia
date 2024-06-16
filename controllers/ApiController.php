@@ -404,15 +404,16 @@ class ApiController extends Controller
         $buhaj->data_pobrania_nasienia = $post->data_pobrania_nasienia;
         $buhaj->miejsce_przezaczenia4 = $post->miejsce_przezaczenia4;
         $buhaj->inne_istotne_informacje = $post->inne_istotne_informacje;
-        $data = $post->data_save;
-        for($i=0; $i<count($data); $i++){
-            $data = new DataPobraniaZapis();
-            $data->ilosc = $post->data_save[$i]->ilosc;
-            $data->data = $post->data_save[$i]->data;
-            $data->save();
-        }
         if($buhaj->validate()){
             $buhaj->save();
+            $data = $post->data_save;
+            for($i=0; $i<count($data); $i++){
+                $data = new DataPobraniaZapis();
+                $data->archiwum_id = $buhaj->id;
+                $data->ilosc = $post->data_save[$i]->ilosc;
+                $data->date = $post->data_save[$i]->date;
+                $data->save();
+            }
             return[
                 'error' => false,
                 'messgae'=> null,
