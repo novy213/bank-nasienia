@@ -428,7 +428,7 @@ class ApiController extends Controller
         $res = array();
         for($i=0;$i<count($archi);$i++){
             $client = Clients::find()->andWhere(['id'=>$archi[$i]->client_id])->one();
-            $zapis = DataPobraniaZapis::find()->andWhere(['id'=>$archi[$i]->id])->all();
+            $zapis = DataPobraniaZapis::find()->andWhere(['archiwum_id'=>$archi[$i]->id])->all();
             $res[] = [
                 'id' => $archi[$i]->id,
                 'numer_swiadectwa' => $archi[$i]->numer_swiadectwa,
@@ -485,7 +485,7 @@ class ApiController extends Controller
                 'nip' => isset($client->nip) ? $client->nazwisko : null,
                 'email' => isset($client->email) ? $client->nazwisko : null,
                 'telefon' => isset($client->telefon) ? $client->nazwisko : null,
-                'data_pobrania_zapis' => isset($zapis->data) ? $zapis->data : null,
+                'data_pobrania_zapis' => isset($zapis) ? $zapis : null,
             ];
         }
         return[
@@ -497,11 +497,13 @@ class ApiController extends Controller
     public function actionGetmetryczka($id){
         $archi = Archiwum::find()->andWhere(['id'=>$id])->one();
         $client = Clients::find()->andWhere(['id'=>$archi->client_id])->one();
+        $zapis = DataPobraniaZapis::find()->andWhere(['archiwum_id'=>$archi->id])->all();
         return[
             'error' => false,
             'messgae'=> null,
             'archiwum'=>$archi,
-            'client' => $client
+            'client' => $client,
+            'zapis' => $zapis,
         ];
     }
     public function actionGetmagazyn($id){
