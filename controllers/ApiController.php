@@ -428,7 +428,7 @@ class ApiController extends Controller
         $res = array();
         for($i=0;$i<count($archi);$i++){
             $client = Clients::find()->andWhere(['id'=>$archi[$i]->client_id])->one();
-            $zapis = DataPobraniaZapis::find()->andWhere(['id'=>$archi[$i]->id])->one();
+            $zapis = DataPobraniaZapis::find()->andWhere(['id'=>$archi[$i]->id])->all();
             $res[] = [
                 'id' => $archi[$i]->id,
                 'numer_swiadectwa' => $archi[$i]->numer_swiadectwa,
@@ -485,7 +485,7 @@ class ApiController extends Controller
                 'nip' => isset($client->nip) ? $client->nazwisko : null,
                 'email' => isset($client->email) ? $client->nazwisko : null,
                 'telefon' => isset($client->telefon) ? $client->nazwisko : null,
-                'data' => isset($zapis->data) ? $zapis->data : null,
+                'data_pobrania_zapis' => isset($zapis->data) ? $zapis->data : null,
             ];
         }
         return[
